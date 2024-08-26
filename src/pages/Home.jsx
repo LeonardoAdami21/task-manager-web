@@ -3,6 +3,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css"; // opcional, para estilização da página
 
+/**
+ * A React functional component that renders the home page of the task manager application.
+ *
+ * It includes a header with a welcome message and navigation links to login and register pages.
+ * A section that highlights the main features of the application.
+ * A footer with copyright information and the developer's name.
+ *
+ * @return {JSX.Element} The JSX element representing the home page.
+ */
+
 function Home() {
   return (
     <div className="home-container">
