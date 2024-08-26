@@ -5,6 +5,13 @@ import { useNavigate } from "react-router-dom";
 import TaskManager from "../components/tasks/TaskManager";
 import "./Dashboard.css";
 
+/**
+ * A functional component representing the application's dashboard.
+ * It handles user authentication, logout functionality, and renders the TaskManager component.
+ *
+ * @return {JSX.Element} The JSX element representing the dashboard
+ */
+
 function Dashboard() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,7 +21,7 @@ function Dashboard() {
     }
   }, [navigate]);
 
-  const logout = async() => {
+  const logout = async () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
