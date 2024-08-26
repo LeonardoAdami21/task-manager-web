@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./pages/Dashsboard";
+import "./App.css";
 
 function App() {
   return (
