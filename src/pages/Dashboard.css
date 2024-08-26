@@ -1,0 +1,31 @@
+/* Adicione este CSS ao seu arquivo de estilos */
+
+/* Estilo do botão de logout */
+.logout-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button:hover {
+  color: #007bff;
+}
+
+/* Espaçamento entre o ícone e o texto */
+.logout-button svg {
+  margin-right: 8px;
+}
+
+/* Estilo do header (opcional) */
+.dashboard header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
