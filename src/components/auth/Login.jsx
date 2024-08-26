@@ -9,7 +9,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(e);
     try {
       const response = await axios.post(`${reactAppBackendUrl}/login`, {
         email,
