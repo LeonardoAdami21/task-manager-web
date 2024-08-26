@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { reactAppBackendUrl } from "../../env/envoriment";
 import React, { useState } from "react";
 import "./Auth.css";
+
+/**
+ * Handles user registration by rendering a registration form and submitting user data to the backend.
+ *
+ * @return {JSX.Element} A JSX element representing the registration form.
+ */
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

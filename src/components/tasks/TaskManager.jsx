@@ -10,6 +10,13 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * TaskManager component that handles CRUD operations for tasks.
+ *
+ * Fetches tasks from the backend, allows users to add, edit, delete, and mark tasks as completed.
+ *
+ * @return {JSX.Element} The TaskManager component
+ */
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);

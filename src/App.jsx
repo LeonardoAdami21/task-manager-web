@@ -6,6 +6,11 @@ import Register from "./components/auth/Register";
 import Dashboard from "./pages/Dashsboard";
 import "./App.css";
 
+/**
+ * The main application component that renders the router with routes for different pages.
+ *
+ * @return {JSX.Element} The JSX element representing the application.
+ */
 function App() {
   return (
     <Router>
