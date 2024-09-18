@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css"; // opcional, para estilização da página
+import Footer from "../components/footer/Footer";
 
 /**
  * A React functional component that renders the home page of the task manager application.
@@ -37,10 +38,7 @@ function Home() {
           <li>Interface intuitiva e responsiva.</li>
         </ul>
       </section>
-      <footer className="home-footer">
-        <p>&copy; 2023 Gerenciador de Tarefas. Todos os direitos reservados.</p>
-        <p>Desenvolvido por: Leonardo Adami</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
