@@ -2,32 +2,32 @@ import axios, { HttpStatusCode } from "axios";
 import { useNavigate } from "react-router-dom";
 import { reactAppBackendUrl } from "../../env/envoriment";
 import React, { useState } from "react";
-import "./Auth.css";
+import "./Admin.css";
 
 /**
  * Handles user registration by rendering a registration form and submitting user data to the backend.
  *
  * @return {JSX.Element} A JSX element representing the registration form.
  */
-function Register() {
+function AdminRegister() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("USER" || "MANAGER");
+  const [role, setRole] = useState("ADMIN");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios
-        .post(`${reactAppBackendUrl}/register`, {
+        .post(`${reactAppBackendUrl}/admin/register`, {
           name,
           email,
           password,
           role,
         })
         .then((response) => {
-          navigate("/login");
+          navigate("/admin/login");
           return response.data;
         })
         .catch((error) => {
@@ -71,18 +71,17 @@ function Register() {
         </label>
         <label>
           Role:
-          <select name="role" id="role" aria-label="role">
-            <option value="USER">User</option>
-            <option value="MANAGER">Manager</option>
+          <select name="role" id="role">
+            <option value="ADMIN">Admin</option>
           </select>
         </label>
         <button type="submit">Register</button>
         <p>
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <a href="/admin/login">Login</a>
         </p>
       </form>
     </div>
   );
 }
 
-export default Register;
+export default AdminRegister;

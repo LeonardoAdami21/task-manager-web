@@ -10,17 +10,19 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-/**
- * TaskManager component that handles CRUD operations for tasks.
- *
- * Fetches tasks from the backend, allows users to add, edit, delete, and mark tasks as completed.
- *
- * @return {JSX.Element} The TaskManager component
- */
 const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
-  const [newTask, setNewTask] = useState({ title: "", description: "" });
+  const [priority, setPriorities] = useState("low" || "medium" || "high");
+  const [status, setStatuses] = useState(
+    "pending" || "in_progress" || "completed",
+  );
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    priority: priority,
+    status: status,
+  });
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -33,7 +35,7 @@ const TaskManager = () => {
         setTasks(response.data);
       } catch (error) {
         console.error("Erro ao buscar tarefas", error);
-        throw new AxiosError(error);
+        throw error;
       }
     };
 
@@ -53,18 +55,18 @@ const TaskManager = () => {
         },
       );
       setTasks([...tasks, response.data]);
-      setNewTask({ title: "", description: "" });
+      setNewTask({ title: "", description: "", priority: "", status: "" });
     } catch (error) {
       console.error("Erro ao adicionar tarefa", error);
     }
   };
 
   const markTaskAsCompleted = async (id) => {
-    const isFinished = true;
+    const status = "completed";
     try {
       await axios.patch(
         `${reactAppBackendUrl}/tasks/finish/${id}`,
-        { isFinished },
+        { status },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -72,9 +74,9 @@ const TaskManager = () => {
         },
       );
       setTasks(
-        tasks.map((task) => (task.id === id ? { ...task, isFinished } : task)),
+        tasks.map((task) => (task.id === id ? { ...task, status } : task)),
       );
-      alert("Tarefa concluída com sucesso!");
+      alert("Tarefa completada com sucesso!");
     } catch (error) {
       console.error("Erro ao marcar tarefa como concluída", error);
     }
@@ -96,6 +98,7 @@ const TaskManager = () => {
       alert("Tarefa editada com sucesso!");
     } catch (error) {
       console.error("Erro ao editar tarefa", error);
+      throw new AxiosError(error.message);
     }
   };
 
@@ -145,6 +148,15 @@ const TaskManager = () => {
                   value={editingTask.description}
                   onChange={handleInputChange}
                 ></textarea>
+                <select
+                  id="priority"
+                  aria-label="Selecione Prioridade"
+                  name="priority"
+                >
+                  <option value="low">Baixa</option>
+                  <option value="medium">Média</option>
+                  <option value="high">Alt</option>
+                </select>
                 <button onClick={() => editTask(task.id)}>
                   <FontAwesomeIcon icon={faCheck} /> Editar
                 </button>
@@ -154,6 +166,8 @@ const TaskManager = () => {
               <div>
                 <h3>{task.title}</h3>
                 <p>{task.description}</p>
+                <p>{task.priority}</p>
+                <p>{task.status}</p>
                 <button onClick={() => markTaskAsCompleted(task.id)}>
                   <FontAwesomeIcon icon={faCheck} />
                 </button>
@@ -183,10 +197,28 @@ const TaskManager = () => {
             setNewTask({ ...newTask, description: e.target.value })
           }
         ></textarea>
+
+        <select name="priority" id="priority" aria-label="Selecione Prioridade">
+          <option value="low">Baixa</option>
+          <option value="medium">Media</option>
+          <option value="high">Alta</option>
+        </select>
+        <select name="status" id="status" aria-label="Selecione Status">
+          <option value="pending">Pendente</option>
+          <option value="in_progress">Em Andamento</option>
+          <option value="completed">Concluída</option>
+        </select>
         {tasks.length === 0 && (
           <div
             className="add-task-card"
-            onClick={() => setEditingTask({ title: "", description: "" })}
+            onClick={() =>
+              setEditingTask({
+                title: "",
+                description: "",
+                priority: "",
+                status: "",
+              })
+            }
           >
             Adicione uma nova tarefa
           </div>
