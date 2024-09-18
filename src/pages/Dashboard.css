@@ -1,5 +1,16 @@
 /* Adicione este CSS ao seu arquivo de estilos */
 
+.header-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  height: 10px;
+  background-color: #f4f4f4;
+  border-bottom: 2px solid #ccc;
+}
+
 /* Estilo do botão de logout */
 .logout-button {
   background: none;
@@ -13,6 +24,25 @@
 
 .logout-button:hover {
   color: #007bff;
+}
+
+.reports-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.reports-button:hover {
+  color: #007bff;
+}
+
+/* Estilo do ícone de relatorio */
+.reports-button svg {
+  margin-right: 8px;
 }
 
 /* Espaçamento entre o ícone e o texto */
