@@ -141,6 +141,16 @@ body {
   resize: vertical;
 }
 
+.task-manager select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
 .task-manager button[type="submit"] {
   width: 100%;
   padding: 10px;

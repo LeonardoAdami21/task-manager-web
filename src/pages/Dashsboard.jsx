@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TaskManager from "../components/tasks/TaskManager";
 import "./Dashboard.css";
+import Reports from "./Reports";
 
 /**
  * A functional component representing the application's dashboard.

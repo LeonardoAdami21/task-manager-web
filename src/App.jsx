@@ -1,24 +1,21 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./pages/Dashsboard";
-import "./App.css";
+import Home from "./pages/Home";
+import Reports from "./pages/Reports";
 
-/**
- * The main application component that renders the router with routes for different pages.
- *
- * @return {JSX.Element} The JSX element representing the application.
- */
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="*" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/reports" element={<Reports />} />
       </Routes>
     </Router>
   );
