@@ -1,0 +1,159 @@
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.projects-container h1 {
+  font-size: 24px;
+  margin-bottom: 18px;
+  align-items: center;
+  text-align: center;
+  color: #333;
+}
+
+.projects-container p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #555;
+}
+
+.projects-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  height: 50px;
+}
+
+.projects-container table th,
+.projects-container table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.projects-container table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.projects-container table td {
+  color: #555;
+}
+
+.projects-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.projects-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.projects-edit {
+  background: none;
+  border: none;
+  color: #c3c3;
+  font-size: 16px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 10px;
+  background-color: #007bff;
+  color: #c3c3;
+  font-size: 16px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logout:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.projects-edit:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.projects-delete {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 16px;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.projects-delete:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

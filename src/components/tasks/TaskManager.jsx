@@ -14,7 +14,8 @@ const TaskManager = () => {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [priority, setPriorities] = useState("low" || "medium" || "high");
-  const [status, setStatuses] = useState(
+  const [projectId, setProjectId] = useState(0);
+  const [status, setStatus] = useState(
     "pending" || "in_progress" || "completed",
   );
   const [newTask, setNewTask] = useState({
@@ -22,6 +23,7 @@ const TaskManager = () => {
     description: "",
     priority: priority,
     status: status,
+    projectId: 0,
   });
 
   useEffect(() => {
@@ -55,7 +57,13 @@ const TaskManager = () => {
         },
       );
       setTasks([...tasks, response.data]);
-      setNewTask({ title: "", description: "", priority: "", status: "" });
+      setNewTask({
+        title: "",
+        description: "",
+        priority: "",
+        status: "",
+        projectId: 0,
+      });
     } catch (error) {
       console.error("Erro ao adicionar tarefa", error);
     }
@@ -168,6 +176,7 @@ const TaskManager = () => {
                 <p>{task.description}</p>
                 <p>{task.priority}</p>
                 <p>{task.status}</p>
+                <p>{task.projectId}</p>
                 <button onClick={() => markTaskAsCompleted(task.id)}>
                   <FontAwesomeIcon icon={faCheck} />
                 </button>
@@ -197,6 +206,15 @@ const TaskManager = () => {
             setNewTask({ ...newTask, description: e.target.value })
           }
         ></textarea>
+        <textarea
+          name="projectId"
+          id="projectId"
+          placeholder="Projeto"
+          value={newTask.projectId}
+          onChange={(e) =>
+            setNewTask({ ...newTask, projectId: e.target.value })
+          }
+        ></textarea>
 
         <select name="priority" id="priority" aria-label="Selecione Prioridade">
           <option value="low">Baixa</option>
@@ -217,6 +235,7 @@ const TaskManager = () => {
                 description: "",
                 priority: "",
                 status: "",
+                projectId: 0,
               })
             }
           >

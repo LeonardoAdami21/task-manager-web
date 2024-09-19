@@ -11,6 +11,24 @@
   border-bottom: 2px solid #ccc;
 }
 
+.projects-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.projects-button:hover {
+  color: #007bff;
+}
+
+.projects-button svg {
+  margin-right: 8px;
+}
+
 /* Estilo do botão de logout */
 .logout-button {
   background: none;
