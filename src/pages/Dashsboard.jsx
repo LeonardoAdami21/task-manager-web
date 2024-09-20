@@ -1,4 +1,4 @@
-import { faFileArchive, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFileArchive, faRectangleAd, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +31,11 @@ function Dashboard() {
     navigate("/reports");
   };
 
+  const projects = async () => {
+    localStorage.getItem("token");
+    navigate("/projects");
+  };
+
   return (
     <div className="dashboard">
       <header className="header-dashboard">
@@ -42,6 +47,10 @@ function Dashboard() {
         <button onClick={logout} className="logout-button">
           <FontAwesomeIcon icon={faSignOutAlt} />
           Logout
+        </button>
+        <button onClick={projects} className="projects-button">
+          <FontAwesomeIcon icon={faRectangleAd} />
+          Projects
         </button>
       </header>
       <TaskManager />
