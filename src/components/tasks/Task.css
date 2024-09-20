@@ -1,184 +1,116 @@
-/* Estilização geral */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
+/* Estilos dos cards de tarefa */
+.task-manager {
   padding: 20px;
+  width: 100vh;
+  margin: 0 auto;
 }
 
-/* Container principal do Gerenciador de Tarefas */
-.task-manager {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
+.task-manager h1 {
+  font-size: 20px;
+  padding: 2px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: auto;
+  gap: 20px;
+}
+
+.card {
+  width: 18rem;
+  border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-/* Título principal */
-.task-manager h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+.card-body {
+  padding: 20px;
+  margin: auto;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
   color: #333;
 }
 
-/* Lista de tarefas */
-.task-manager ul {
-  list-style: none;
-  padding: 0;
-}
-
-.task-manager li {
-  background-color: #fafafa;
+.card-subtitle {
+  font-size: 1rem;
   margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  color: #888;
 }
 
-/* Título da tarefa */
-.task-manager li h3 {
-  margin: 0;
-  font-size: 18px;
+.card-text {
+  font-size: 0.9rem;
+  padding: 10px;
   color: #555;
 }
 
-/* Descrição da tarefa */
-.task-manager li p {
-  margin: 5px 0;
-  color: #777;
-  font-size: 14px;
+button {
+  margin-right: 5px;
+  padding: 2px;
 }
 
-/* Formulário de Edição */
-.task-manager .edit-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.task-manager .edit-form input,
-.task-manager .edit-form textarea {
-  margin-bottom: 10px;
-}
-
-.task-manager .edit-form input[type="text"],
-.task-manager .edit-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.task-manager .edit-form textarea {
-  resize: vertical;
-}
-
-/* Botões de ação (Concluir, Editar, Excluir) */
-.task-manager button {
-  background-color: #007bff;
-  color: white;
-  border: none;
+/* Estilos específicos dos botões */
+.btn {
   padding: 8px 12px;
+  font-size: 0.9rem;
   border-radius: 4px;
-  cursor: pointer;
-  margin: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
-.task-manager button:hover {
-  background-color: #0056b3;
-}
-
-.task-manager button.complete {
-  background-color: #28a745;
-}
-
-.task-manager button.complete:hover {
-  background-color: #218838;
-}
-
-.task-manager button.edit {
-  background-color: #ffc107;
-}
-
-.task-manager button.edit:hover {
-  background-color: #e0a800;
-}
-
-.task-manager button.delete {
-  background-color: #dc3545;
-}
-
-.task-manager button.delete:hover {
-  background-color: #c82333;
-}
-
-/* Formulário de nova tarefa */
-.task-manager form {
-  margin-top: 20px;
-}
-
-.task-manager input[type="text"],
-.task-manager textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.task-manager textarea {
-  resize: vertical;
-}
-
-.task-manager select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.task-manager button[type="submit"] {
-  width: 100%;
-  padding: 10px;
+.btn-primary {
   background-color: #007bff;
-  border: none;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
-.task-manager button[type="submit"]:hover {
-  background-color: #0056b3;
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
 }
 
-/* Card vazio para adicionar uma nova tarefa */
-.task-manager .add-task-card {
-  background-color: #f4f4f4;
-  border: 2px dashed #007bff;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  color: #007bff;
-  font-size: 18px;
+/* Margem para o formulário */
+.mt-4 {
+  margin-top: 1.5rem;
 }
 
-.task-manager .add-task-card:hover {
-  background-color: #e9ecef;
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
 }

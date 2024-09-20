@@ -13,7 +13,7 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("USER" || "MANAGER");
+  const [role, setRole] = useState("USER");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

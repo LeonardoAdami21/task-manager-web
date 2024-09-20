@@ -14,7 +14,7 @@ export const Projects = () => {
   const [initialDate, setInitialDate] = useState("");
   const [finalDate, setFinalDate] = useState("");
   const [editProjectId, setEditProjectId] = useState(null);
-  const [userRole, setUserRole] = useState("ADMIN" || "MANAGER");
+  const [userRole, setUserRole] = useState("MANAGER");
   const navigate = useNavigate();
 
   const backToDashboard = () => {
@@ -37,8 +37,8 @@ export const Projects = () => {
         {
           name,
           description,
-          initialDate,
-          finalDate,
+          initialDate: initialDate ? new Date(initialDate).toISOString() : null,
+          finalDate: finalDate ? new Date(finalDate).toISOString() : null,
         },
         {
           headers: {
@@ -87,8 +87,8 @@ export const Projects = () => {
       {
         name,
         description,
-        initialDate,
-        finalDate,
+        initialDate: initialDate ? new Date(initialDate).toISOString() : null,
+        finalDate: finalDate ? new Date(finalDate).toISOString() : null,
       },
       {
         headers: {
@@ -161,44 +161,47 @@ export const Projects = () => {
 
   return (
     <div className="projects-container">
-      {userRole === "ADMIN" || userRole === "MANAGER" || (
-        <form
-          onSubmit={
-            editProjectId ? () => () => editProject(editProjectId) : addProject
-          }
-          className="projects-form"
-        >
-          <div className="back-to-dashboard" onClick={backToDashboard}>
-            <FontAwesomeIcon icon={faArrowLeft} size={16} />
-            <span>Voltar</span>
-          </div>
+      {userRole === "ADMIN" ||
+        (userRole === "MANAGER" && (
+          <form
+            onSubmit={
+              editProjectId
+                ? () => () => editProject(editProjectId)
+                : addProject
+            }
+            className="projects-form"
+          >
+            <div className="back-to-dashboard" onClick={backToDashboard}>
+              <FontAwesomeIcon icon={faArrowLeft} size="lg" />
+              <span>Voltar</span>
+            </div>
 
-          <h1 className="projects-title">Projetos</h1>
-          <input
-            type="text"
-            placeholder="Nome do Projeto"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Descricão"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <input
-            type="date"
-            placeholder="Data Inicial"
-            onChange={(e) => setInitialDate(e.target.value)}
-          />
-          <input
-            type="date"
-            placeholder="Data Final"
-            onChange={(e) => setFinalDate(e.target.value)}
-          />
-          <button type="submit" className="projects-button-create">
-            {editProjectId ? "Editar Projeto" : "Adicionar Projeto"}
-          </button>
-        </form>
-      )}
+            <h1 className="projects-title">Projetos</h1>
+            <input
+              type="text"
+              placeholder="Nome do Projeto"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Descricão"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <input
+              type="date"
+              placeholder="Data Inicial"
+              onChange={(e) => setInitialDate(e.target.value)}
+            />
+            <input
+              type="date"
+              placeholder="Data Final"
+              onChange={(e) => setFinalDate(e.target.value)}
+            />
+            <button type="submit" className="projects-button-create">
+              {editProjectId ? "Editar Projeto" : "Adicionar Projeto"}
+            </button>
+          </form>
+        ))}
 
       <table>
         <thead>
@@ -216,32 +219,29 @@ export const Projects = () => {
               <td>{project.name}</td>
               <td>{project.description}</td>
               <td>
-                {project.initialDate
-                  ? new Date(project.initialDate).toLocaleDateString()
-                  : ""}
+                {initialDate ? new Date(initialDate).toLocaleDateString() : ""}
               </td>
               <td>
-                {project.finalDate
-                  ? new Date(project.finalDate).toLocaleDateString()
-                  : ""}
+                {finalDate ? new Date(finalDate).toLocaleDateString() : ""}
               </td>
               <td>
-                {userRole === "ADMIN" || userRole === "MANAGER" || (
-                  <>
-                    <button
-                      className="projects-button-edit"
-                      onClick={() => findProjectById(project.id)}
-                    >
-                      Editar
-                    </button>
-                    <button
-                      className="projects-button-delete"
-                      onClick={() => deleteProject(project.id)}
-                    >
-                      Excluir
-                    </button>
-                  </>
-                )}
+                {userRole === "ADMIN" ||
+                  (userRole === "MANAGER" && (
+                    <>
+                      <button
+                        className="projects-button-edit"
+                        onClick={() => findProjectById(project.id)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="projects-button-delete"
+                        onClick={() => deleteProject(project.id)}
+                      >
+                        Excluir
+                      </button>
+                    </>
+                  ))}
               </td>
             </tr>
           ))}
