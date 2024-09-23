@@ -13,7 +13,7 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("USER" || "MANAGER");
+  const [role, setRole] = useState("USER");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -71,9 +71,14 @@ function Register() {
         </label>
         <label>
           Role:
-          <select name="role" id="role" aria-label="role">
-            <option value="USER">User</option>
-            <option value="MANAGER">Manager</option>
+          <select
+            name="role"
+            id="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="USER">USER</option>
+            <option value="MANAGER">MANAGER</option>
           </select>
         </label>
         <button type="submit">Register</button>
