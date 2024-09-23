@@ -21,6 +21,14 @@ export const Projects = () => {
     navigate("/dashboard");
   };
 
+  const startEditingProject = (project) => {
+    setEditProjectId(project.id);
+    setName(project.name);
+    setDescription(project.description);
+    setInitialDate(new Date(project.initialDate).toISOString().split("T")[0]); // Exibir apenas a data
+    setFinalDate(new Date(project.finalDate).toISOString().split("T")[0]);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -81,31 +89,38 @@ export const Projects = () => {
       });
   };
 
-  const editProject = async (id) => {
-    await axios.patch(
-      `${reactAppBackendUrl}/projects/${id}`,
-      {
-        name,
-        description,
-        initialDate: initialDate ? new Date(initialDate).toISOString() : null,
-        finalDate: finalDate ? new Date(finalDate).toISOString() : null,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+  const editProject = async (e) => {
+    e.preventDefault();
+    const updatedProject = {
+      name: name,
+      description: description,
+      initialDate: initialDate ? new Date(initialDate).toISOString() : null,
+      finalDate: finalDate ? new Date(finalDate).toISOString() : null,
+    };
+    await axios
+      .patch(
+        `${reactAppBackendUrl}/projects/${editProjectId}`,
+        {
+          updatedProject,
         },
-      },
-    );
-    const updatedProjects = projects
-      .map((project) => {
-        project.id === id ? response.data : project;
-        setProjects(updatedProjects);
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      )
+      .then((response) => {
+        alert("Projeto editado com sucesso");
+        setProjects(
+          projects.map((project) =>
+            project.id === editProjectId ? response.data : project,
+          ),
+        );
+        setEditProjectId(null);
         setName("");
         setDescription("");
         setInitialDate("");
         setFinalDate("");
-        setEditProjectId(null);
-        alert("Projeto editado com sucesso");
       })
       .catch((error) => {
         console.log("Erro ao editar projeto", error);
@@ -115,38 +130,17 @@ export const Projects = () => {
       });
   };
 
-  const findProjectById = async (id) => {
-    await axios
-      .get(`${reactAppBackendUrl}/projects/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        setName(response.data.name);
-        setDescription(response.data.description);
-        setInitialDate(response.data.initialDate);
-        setFinalDate(response.data.finalDate);
-        setEditProjectId(id);
-      })
-      .catch((error) => {
-        throw new AxiosError({
-          message: error.message,
-        });
-      });
-  };
-
   const deleteProject = async (id) => {
     await axios
-      .delete(`${reactAppBackendUrl}/projects/${id}`, {
+      .delete(`${reactAppBackendUrl}/projects/${+id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
         setProjects(projects.filter((project) => project.id !== id));
-        console.log(response.data);
         alert("Projeto excluído com sucesso");
+        return response.data;
       })
       .catch((error) => {
         throw new AxiosError({
@@ -229,23 +223,31 @@ export const Projects = () => {
                   : ""}
               </td>
               <td>
-                {userRole === "ADMIN" ||
-                  (userRole === "MANAGER" && (
-                    <>
-                      <button
-                        className="projects-button-edit"
-                        onClick={() => findProjectById(project.id)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className="projects-button-delete"
-                        onClick={() => deleteProject(project.id)}
-                      >
-                        Excluir
-                      </button>
-                    </>
-                  ))}
+                {editProjectId === project.id ? (
+                  // Exibir o botão de salvar quando estiver editando
+                  <button
+                    className="projects-button-edit"
+                    onClick={editProject}
+                  >
+                    Salvar
+                  </button>
+                ) : (
+                  // Exibir o botão de editar se não estiver editando
+                  <button
+                    className="projects-button-edit"
+                    onClick={() => startEditingProject(project)}
+                  >
+                    Editar
+                  </button>
+                )}
+              </td>
+              <td>
+                <button
+                  className="projects-button-delete"
+                  onClick={() => deleteProject(project.id)}
+                >
+                  Excluir
+                </button>
               </td>
             </tr>
           ))}
