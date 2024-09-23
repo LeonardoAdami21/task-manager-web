@@ -219,10 +219,14 @@ export const Projects = () => {
               <td>{project.name}</td>
               <td>{project.description}</td>
               <td>
-                {initialDate ? new Date(initialDate).toLocaleDateString() : ""}
+                {project.initialDate
+                  ? new Date(project.initialDate).toLocaleDateString()
+                  : ""}
               </td>
               <td>
-                {finalDate ? new Date(finalDate).toLocaleDateString() : ""}
+                {project.finalDate
+                  ? new Date(project.finalDate).toLocaleDateString()
+                  : ""}
               </td>
               <td>
                 {userRole === "ADMIN" ||
